@@ -1,8 +1,26 @@
-# DriveFair - Phase 1 MVP
+# 🚗 DriveFair - Consent-Based Behavioral Insurance Platform
 
-**Consent-Based Behavioral Insurance Pricing Platform**
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Phase](https://img.shields.io/badge/Phase-1%20MVP-success)](https://github.com/Loahith/PS-025-Usage-Based-Insurance)
 
-A cutting-edge insurance platform that calculates premiums based on real-world driving behavior with explicit user consent. Built with transparency, fairness, and privacy at its core.
+> A cutting-edge insurance platform that calculates premiums based on real-world driving behavior with explicit user consent. Built with transparency, fairness, and privacy at its core.
+
+**🔗 Repository**: https://github.com/Loahith/PS-025-Usage-Based-Insurance
+
+---
+
+## 📸 Screenshots
+
+### Customer Dashboard
+![Dashboard Preview](https://via.placeholder.com/800x450/0080ff/ffffff?text=Customer+Dashboard+with+Real-Time+Metrics)
+
+### Trip Simulator
+![Simulator Preview](https://via.placeholder.com/800x450/00c767/ffffff?text=Real-Time+Trip+Simulator)
+
+### Premium Explainer
+![Explainer Preview](https://via.placeholder.com/800x450/ffba00/ffffff?text=Interactive+Premium+Breakdown)
 
 ---
 

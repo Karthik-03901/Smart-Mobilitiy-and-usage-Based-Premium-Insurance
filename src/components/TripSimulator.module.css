@@ -1,0 +1,339 @@
+.simulator {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.statusIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.idle {
+  background-color: var(--color-neutral-100);
+  color: var(--color-text-secondary);
+}
+
+.idle .statusIndicator {
+  background-color: var(--color-neutral-400);
+}
+
+.driving {
+  background-color: var(--color-success-50);
+  color: var(--color-success-700);
+}
+
+.driving .statusIndicator {
+  background-color: var(--color-success-600);
+}
+
+.paused {
+  background-color: var(--color-warning-50);
+  color: var(--color-warning-700);
+}
+
+.paused .statusIndicator {
+  background-color: var(--color-warning-500);
+}
+
+/* Map Container */
+.mapContainer {
+  position: relative;
+  height: 400px;
+  background: linear-gradient(135deg, var(--color-neutral-100) 0%, var(--color-neutral-200) 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+}
+
+.mapCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+.mapOverlay {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+
+.mapStat {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  pointer-events: auto;
+}
+
+.mapStatLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-1);
+}
+
+.mapStatValue {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.mapStatUnit {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-left: var(--space-1);
+}
+
+/* Real-time Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.metric {
+  background: var(--color-surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+}
+
+.metric:hover {
+  border-color: var(--color-primary-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.metricLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.metricIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-tertiary);
+}
+
+.metricValue {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.metricUnit {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-left: var(--space-2);
+}
+
+.metricBar {
+  margin-top: var(--space-3);
+  height: 6px;
+  background: var(--color-neutral-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.metricBarFill {
+  height: 100%;
+  transition: width var(--transition-base), background-color var(--transition-base);
+  border-radius: var(--radius-full);
+}
+
+.metricGood {
+  background: linear-gradient(90deg, var(--color-success-400), var(--color-success-600));
+}
+
+.metricWarning {
+  background: linear-gradient(90deg, var(--color-warning-400), var(--color-warning-600));
+}
+
+.metricDanger {
+  background: linear-gradient(90deg, var(--color-danger-400), var(--color-danger-600));
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+}
+
+.controlGroup {
+  flex: 1;
+  min-width: 200px;
+}
+
+.controlLabel {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.select:hover {
+  border-color: var(--color-primary-400);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px var(--color-primary-100);
+}
+
+/* Events Feed */
+.eventsFeed {
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--color-surface);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-4);
+}
+
+.event {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+.event:last-child {
+  margin-bottom: 0;
+}
+
+.eventDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: var(--space-1);
+  flex-shrink: 0;
+}
+
+.eventInfo .eventDot {
+  background: var(--color-primary-500);
+}
+
+.eventWarning {
+  background: var(--color-warning-50);
+}
+
+.eventWarning .eventDot {
+  background: var(--color-warning-500);
+}
+
+.eventDanger {
+  background: var(--color-danger-50);
+}
+
+.eventDanger .eventDot {
+  background: var(--color-danger-500);
+}
+
+.eventContent {
+  flex: 1;
+}
+
+.eventMessage {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.eventTime {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .simulator {
+    padding: var(--space-4);
+  }
+
+  .mapContainer {
+    height: 300px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .controlGroup {
+    min-width: 100%;
+  }
+}

@@ -1,0 +1,98 @@
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Variants */
+.live .dot {
+  background: var(--color-danger-600);
+  box-shadow: 0 0 8px var(--color-danger-400);
+}
+
+.live {
+  background: var(--color-danger-50);
+  color: var(--color-danger-800);
+  border-color: var(--color-danger-200);
+}
+
+.active .dot {
+  background: var(--color-success-600);
+  box-shadow: 0 0 8px var(--color-success-400);
+}
+
+.active {
+  background: var(--color-success-50);
+  color: var(--color-success-800);
+  border-color: var(--color-success-200);
+}
+
+.updating .dot {
+  background: var(--color-warning-600);
+  box-shadow: 0 0 8px var(--color-warning-400);
+}
+
+.updating {
+  background: var(--color-warning-50);
+  color: var(--color-warning-800);
+  border-color: var(--color-warning-200);
+}
+
+.offline .dot {
+  background: var(--color-neutral-400);
+  animation: none;
+}
+
+.offline {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-600);
+  border-color: var(--color-neutral-300);
+}
+
+/* Sizes */
+.sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.sm .dot {
+  width: 6px;
+  height: 6px;
+}
+
+.md {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.md .dot {
+  width: 8px;
+  height: 8px;
+}
+
+.lg {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-base);
+}
+
+.lg .dot {
+  width: 10px;
+  height: 10px;
+}
+
+.label {
+  user-select: none;
+}

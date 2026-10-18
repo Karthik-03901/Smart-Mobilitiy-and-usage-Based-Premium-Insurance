@@ -1,0 +1,276 @@
+/* ─── DriveFair Premium Loading Screen Styling ───────────────────────────── */
+
+.loadingContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  background: var(--color-background, #f8fafc);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Optional inline mode (when embedded in card) */
+.loadingInline {
+  min-height: 380px;
+  padding: 48px 24px;
+}
+
+/* Subtle background telemetry grid & ambient glow */
+.ambientGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(14, 165, 233, 0.05) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ambientBreathe 4s ease-in-out infinite alternate;
+}
+
+@keyframes ambientBreathe {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+/* Card Wrap */
+.loadingCard {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 440px;
+  width: 100%;
+  padding: 44px 36px;
+  background: var(--color-surface, #ffffff);
+  border: 1.5px solid var(--color-border, #e2e8f0);
+  border-radius: 28px;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 24px 60px -15px rgba(15, 23, 42, 0.08);
+  animation: popIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: translateY(16px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Center Logo Spinner with Orbiting Particle */
+.spinnerWrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinnerOuterRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2.5px dashed rgba(37, 99, 235, 0.25);
+  animation: spinClockwise 12s linear infinite;
+}
+
+.spinnerGradientRing {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #2563eb;
+  border-right-color: #38bdf8;
+  animation: spinClockwise 1.2s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+}
+
+.spinnerInnerRing {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-bottom-color: #10b981;
+  animation: spinCounterClockwise 1.8s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+}
+
+@keyframes spinClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spinCounterClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+/* Center Logo Box */
+.logoCenter {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.40);
+  animation: pulseLogo 2s ease-in-out infinite;
+}
+
+@keyframes pulseLogo {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.55); }
+}
+
+/* Brand & Status Text */
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.brandName {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
+  letter-spacing: -0.03em;
+}
+
+.brandTag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 99px;
+  background: rgba(37, 99, 235, 0.10);
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.20);
+}
+
+.loadingTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.loadingSubtext {
+  font-size: 0.84375rem;
+  color: var(--color-text-secondary, #64748b);
+  line-height: 1.55;
+  margin: 0 0 24px 0;
+  max-width: 340px;
+}
+
+/* Shimmer Progress Track */
+.progressTrack {
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--color-border-light, #e2e8f0);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8, #10b981);
+  background-size: 200% 100%;
+  animation: progressIndeterminate 1.6s ease-in-out infinite, shimmerGradient 2.5s linear infinite;
+}
+
+@keyframes progressIndeterminate {
+  0% { left: 0%; width: 10%; }
+  50% { left: 35%; width: 55%; }
+  100% { left: 100%; width: 10%; }
+}
+
+@keyframes shimmerGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Live Telematics Step Ticker */
+.stepTicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary, #64748b);
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: var(--color-surface-elevated, #f8fafc);
+  border: 1px solid var(--color-border-light, #e2e8f0);
+  transition: all 0.3s ease;
+}
+
+.stepDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: blinkDot 1.4s ease-in-out infinite;
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+
+/* ─── Dark Mode Overrides ────────────────────────────────── */
+:global([data-theme="dark"]) .loadingContainer {
+  background: #090d16;
+}
+
+:global([data-theme="dark"]) .loadingCard {
+  background: #111827;
+  border-color: #1e2d45;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+:global([data-theme="dark"]) .ambientGlow {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
+}
+
+:global([data-theme="dark"]) .brandName {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .loadingTitle {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .loadingSubtext {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .progressTrack {
+  background: #1e2d45;
+}
+
+:global([data-theme="dark"]) .stepTicker {
+  background: #1a2236;
+  border-color: #1e2d45;
+  color: #94a3b8;
+}

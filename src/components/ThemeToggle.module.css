@@ -1,0 +1,171 @@
+/* ================================================================
+   DriveFair – Theme Toggle Button Component
+   ThemeToggle.module.css
+================================================================ */
+
+.toggleButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-surface, #ffffff);
+  border: 1.5px solid var(--color-border, #e2e8f0);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+}
+
+.toggleButton:hover {
+  border-color: #6366f1;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.22);
+}
+
+.toggleButton:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* ─── Size variants ────────────────────────────────────────── */
+.sizeSm {
+  width: 54px;
+  height: 28px;
+}
+
+.sizeMd {
+  width: 66px;
+  height: 34px;
+}
+
+/* ─── Track & Icons ────────────────────────────────────────── */
+.track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.sizeSm .track {
+  padding: 0 6px;
+}
+
+.sizeMd .track {
+  padding: 0 8px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary, #94a3b8);
+  transition: opacity 0.22s ease, transform 0.25s ease;
+  z-index: 1;
+}
+
+.sizeSm .icon {
+  font-size: 11px;
+}
+
+.sizeMd .icon {
+  font-size: 13px;
+}
+
+.iconSun {
+  color: #f59e0b;
+}
+
+.iconMoon {
+  color: #818cf8;
+}
+
+/* ─── Thumb ─────────────────────────────────────────────────── */
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.40);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.28s ease;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.sizeSm .thumb {
+  width: 22px;
+  height: 22px;
+  transform: translate(2px, -50%);
+}
+
+.sizeMd .thumb {
+  width: 26px;
+  height: 26px;
+  transform: translate(3px, -50%);
+}
+
+/* Checked (Dark Mode) State */
+.toggleDark {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.18);
+}
+
+.toggleDark:hover {
+  border-color: #818cf8;
+  box-shadow: 0 0 16px rgba(129, 140, 248, 0.35);
+}
+
+/* When dark, slide thumb fully across to the right edge */
+.toggleDark.sizeSm .thumb {
+  transform: translate(27px, -50%);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+}
+
+.toggleDark.sizeMd .thumb {
+  transform: translate(34px, -50%);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+}
+
+/* Micro-rotation of the active thumb icon */
+.thumbIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sizeSm .thumbIcon {
+  font-size: 10px;
+}
+
+.sizeMd .thumbIcon {
+  font-size: 12px;
+}
+
+.toggleDark .thumbIcon {
+  transform: rotate(360deg);
+}
+
+/* Optional label text alongside toggle */
+.labelWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.labelText {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary, #475569);
+  letter-spacing: -0.01em;
+}

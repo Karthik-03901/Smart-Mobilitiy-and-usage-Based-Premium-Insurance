@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './Button.module.css';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,6 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   children,
   type = 'button',
+  onClick,
   ...props
 }) => {
   const classes = [
@@ -29,7 +30,40 @@ export const Button: React.FC<ButtonProps> = ({
     fullWidth && styles.fullWidth,
     loading && styles.loading,
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  // Ripple effect on click
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (disabled || loading) return;
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      const ripple = document.createElement('span');
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: rippleAnim 600ms linear;
+        pointer-events: none;
+      `;
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 620);
+
+      onClick?.(e);
+    },
+    [disabled, loading, onClick]
+  );
 
   return (
     <button
@@ -38,9 +72,12 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || loading}
       aria-busy={loading}
       aria-disabled={disabled || loading}
+      onClick={handleClick}
       {...props}
     >
+      {loading && <span className={styles.spinner} aria-hidden="true" />}
       {children}
     </button>
   );
 };
+

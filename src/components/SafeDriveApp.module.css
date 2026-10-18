@@ -1,0 +1,1321 @@
+/* SafeDriveApp.module.css - Clean, Crisp White Theme (Simple Modern UI) */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to bottom, #f8fafc 0%, #ffffff 300px);
+  color: #0f172a;
+  padding: 32px 36px 80px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+.pageInner {
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─── Top Control Bar ────────────────────────────────────────────── */
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px 22px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.barLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.statusPulseGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #0284c7;
+  box-shadow: 0 0 6px rgba(2, 132, 199, 0.5);
+  animation: radarGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes radarGlow {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.liveLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #0284c7;
+}
+
+.vehicleInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #475569;
+  flex-wrap: wrap;
+}
+
+.vehicleInfo strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.bulletDot {
+  color: #cbd5e1;
+  font-size: 0.8rem;
+}
+
+.driverTag {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.barRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ─── White / Dark Theme Toggle Controls ─────────────────────────── */
+.themeToggleContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.themeSegmentedGroup {
+  display: inline-flex;
+  align-items: center;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.themeSegmentItem {
+  background: transparent;
+  border: none;
+  padding: 5px 11px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.themeSegmentItem:hover {
+  color: #0f172a;
+}
+
+.themeSegmentItemActive {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+.pillButton {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pillButton:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.pillButtonActive {
+  background: #e0e7ff;
+  border-color: #6366f1;
+  color: #4338ca;
+}
+
+.sosButton {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sosButton:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+  box-shadow: 0 2px 12px rgba(220, 38, 38, 0.35);
+}
+
+/* ─── Main 2-Column Grid (Leaflet Map + Cockpit) ─────────────────── */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Left Column: Leaflet Map & Turn Cues */
+.mapColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cueAndFeedRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.cueBox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.cueIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.cueNext {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.cueText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.eventFeedBox {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.feedTitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.eventList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.eventItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+}
+
+.eventIcon {
+  font-size: 0.85rem;
+}
+
+.eventTitle {
+  color: #334155;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventImpact {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* Right Column */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─── Cards & Section Headers ────────────────────────────────────── */
+.cleanCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color 0.2s ease;
+}
+
+.cleanCard:hover {
+  border-color: #cbd5e1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardHeaderIcon {
+  font-size: 1.15rem;
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.activeBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.tierPill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #16a34a;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.policyCoveredTag {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ─── Speedometer HUD (Right Column) ─────────────────────────────── */
+.speedDisplay {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.speedValueWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.speedDigit {
+  font-size: 4.2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+.speedUnit {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #4f46e5;
+  text-transform: uppercase;
+}
+
+.speedMetaWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.limitTag {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  color: #334155;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.limitTag strong {
+  color: #0f172a;
+}
+
+.complianceTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.checkIcon {
+  font-weight: 800;
+}
+
+/* Telemetry Mini-Bar */
+.telemetryBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.telemetryStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statLabel {
+  font-size: 0.68rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.statValue {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.statSub {
+  font-size: 0.68rem;
+  color: #4f46e5;
+  font-weight: 500;
+}
+
+.statDivider {
+  width: 1px;
+  height: 32px;
+  background: #e2e8f0;
+}
+
+/* Action Row */
+.actionRow {
+  display: flex;
+  gap: 10px;
+}
+
+.actionBtnOutline {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.actionBtnOutline:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.actionBtnActive {
+  background: #e0e7ff;
+  border-color: #6366f1;
+  color: #4338ca;
+}
+
+/* ─── Safety Score & Reward Card ─────────────────────────────────── */
+.scoreHeroRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 20px;
+}
+
+.scoreCircle {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.scoreSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circleBg {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 8;
+}
+
+.circleFill {
+  fill: none;
+  stroke: #4f46e5;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.scoreInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreBig {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.scoreMax {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.discountCard {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.discountPre {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+
+.discountAmount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.discountSub {
+  font-size: 0.74rem;
+  color: #475569;
+}
+
+.streakBadge {
+  margin-top: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #d97706;
+}
+
+/* Factors Bars */
+.factorsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.factorItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.factorLabelRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #334155;
+}
+
+.factorScore {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.factorTrack {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.factorFill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s ease;
+}
+
+/* ─── Bottom Section: Roadside Assistance ────────────────────────── */
+.rsaSection {
+  width: 100%;
+}
+
+.activeDispatchBanner {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dispatchLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dispatchPulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.5);
+  animation: radarGlow 1.4s infinite ease-in-out;
+}
+
+.dispatchTitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0369a1;
+}
+
+.dispatchSub {
+  font-size: 0.76rem;
+  color: #0284c7;
+}
+
+.dispatchCancelBtn {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dispatchCancelBtn:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.rsaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.rsaCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.rsaCard:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.08);
+  transform: translateY(-2px);
+}
+
+.rsaCardTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.rsaIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.rsaCardTitle {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 4px;
+}
+
+.rsaCardDesc {
+  font-size: 0.74rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.rsaBtn {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.rsaBtn:hover {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+}
+
+.rsaBtnActive {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
+}
+
+/* ─── Map Loading Placeholder ────────────────────────────────────── */
+.mapLoadingPlaceholder {
+  height: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  gap: 14px;
+}
+
+.mapSpinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(79, 70, 229, 0.2);
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spinLoader 0.9s linear infinite;
+}
+
+@keyframes spinLoader {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Modals ─────────────────────────────────────────────────────── */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: #0f172a;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.modalClose:hover {
+  color: #0f172a;
+}
+
+.sosModalTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #dc2626;
+  margin: 0;
+}
+
+.sosModalDesc {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.sosModalDesc strong {
+  color: #0f172a;
+}
+
+.sosCountdown {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #dc2626;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  padding: 10px 0;
+}
+
+.sosButtonRow {
+  display: flex;
+  gap: 12px;
+}
+
+.sosCancelBtn {
+  flex: 1;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 11px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sosCancelBtn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.sosConfirmBtn {
+  flex: 1;
+  background: #dc2626;
+  border: 1px solid #dc2626;
+  color: #ffffff;
+  padding: 11px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+}
+
+.sosConfirmBtn:hover {
+  background: #b91c1c;
+}
+
+/* ─── Dark Mode Overrides for SafeDriveApp ────────────────────────── */
+:global([data-theme="dark"]) .container {
+  background-color: #0b0f1a;
+  background-image: linear-gradient(to bottom, #111827 0%, #0b0f1a 320px);
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .topBar {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+:global([data-theme="dark"]) .vehicleInfo {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .vehicleInfo strong {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .bulletDot {
+  color: #334155;
+}
+
+:global([data-theme="dark"]) .driverTag {
+  background: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+:global([data-theme="dark"]) .statusPulseGroup {
+  background: rgba(2, 132, 199, 0.15);
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+:global([data-theme="dark"]) .liveLabel {
+  color: #38bdf8;
+}
+
+:global([data-theme="dark"]) .themeSegmentedGroup {
+  background: #1a2236;
+  border-color: #24324d;
+}
+
+:global([data-theme="dark"]) .themeSegmentItem {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .themeSegmentItem:hover {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .themeSegmentItemActive {
+  background: #24324d;
+  color: #ffffff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+:global([data-theme="dark"]) .pillButton {
+  background: #1a2236;
+  border-color: #24324d;
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .pillButton:hover {
+  background: #24324d;
+  border-color: #384d74;
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .pillButtonActive {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: #6366f1;
+  color: #a5b4fc;
+}
+
+:global([data-theme="dark"]) .sosButton {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
+
+:global([data-theme="dark"]) .sosButton:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .cleanCard {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.45);
+}
+
+:global([data-theme="dark"]) .cleanCard:hover {
+  border-color: #2e3e5c;
+}
+
+:global([data-theme="dark"]) .cardTitle {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .policyCoveredTag {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .cueBox {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+:global([data-theme="dark"]) .cueIcon {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+:global([data-theme="dark"]) .cueNext {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .cueText {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .eventFeedBox {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+:global([data-theme="dark"]) .feedTitle {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .eventTitle {
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .speedDisplay {
+  background: #172033;
+  border-color: #24324d;
+}
+
+:global([data-theme="dark"]) .speedDigit {
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .speedUnit {
+  color: #818cf8;
+}
+
+:global([data-theme="dark"]) .limitTag {
+  background: #131929;
+  border-color: #24324d;
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .limitTag strong {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .telemetryBar {
+  background: #172033;
+  border-color: #24324d;
+}
+
+:global([data-theme="dark"]) .statLabel {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .statValue {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .statSub {
+  color: #818cf8;
+}
+
+:global([data-theme="dark"]) .statDivider {
+  background: #24324d;
+}
+
+:global([data-theme="dark"]) .actionBtnOutline {
+  background: #172033;
+  border-color: #24324d;
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .actionBtnOutline:hover {
+  background: #24324d;
+  border-color: #384d74;
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .actionBtnActive {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: #6366f1;
+  color: #a5b4fc;
+}
+
+:global([data-theme="dark"]) .scoreHeroRow {
+  background: #172033;
+  border-color: #24324d;
+}
+
+:global([data-theme="dark"]) .circleBg {
+  stroke: #24324d;
+}
+
+:global([data-theme="dark"]) .circleFill {
+  stroke: #818cf8;
+}
+
+:global([data-theme="dark"]) .scoreBig {
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .scoreMax {
+  color: #64748b;
+}
+
+:global([data-theme="dark"]) .discountPre {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .discountAmount {
+  color: #34d399;
+}
+
+:global([data-theme="dark"]) .discountSub {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .factorLabelRow {
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .factorScore {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .factorTrack {
+  background: #24324d;
+}
+
+:global([data-theme="dark"]) .rsaCard {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+:global([data-theme="dark"]) .rsaCard:hover {
+  border-color: #4f46e5;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+}
+
+:global([data-theme="dark"]) .rsaIconWrap {
+  background: #1a2236;
+}
+
+:global([data-theme="dark"]) .rsaCardTitle {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .rsaCardDesc {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .rsaBtn {
+  background: #1a2236;
+  border-color: #24324d;
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .rsaBtn:hover {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .activeDispatchBanner {
+  background: rgba(2, 132, 199, 0.15);
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+:global([data-theme="dark"]) .dispatchTitle {
+  color: #38bdf8;
+}
+
+:global([data-theme="dark"]) .dispatchSub {
+  color: #bae6fd;
+}
+
+:global([data-theme="dark"]) .mapLoadingPlaceholder {
+  background: #131929;
+  border-color: #1e2d45;
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .modalCard {
+  background: #131929;
+  border-color: #1e2d45;
+  color: #f1f5f9;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+}
+
+:global([data-theme="dark"]) .modalClose {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .modalClose:hover {
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .sosModalDesc {
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .sosModalDesc strong {
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .sosCancelBtn {
+  background: #1a2236;
+  border-color: #24324d;
+  color: #cbd5e1;
+}
+
+:global([data-theme="dark"]) .sosCancelBtn:hover {
+  background: #24324d;
+  color: #ffffff;
+}
+
+/* ─── Responsive Adjustments ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .rsaGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 16px 16px 40px;
+  }
+
+  .barLeft {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cueAndFeedRow {
+    grid-template-columns: 1fr;
+  }
+
+  .speedDisplay {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .speedMetaWrap {
+    align-items: flex-start;
+  }
+
+  .rsaGrid {
+    grid-template-columns: 1fr;
+  }
+}

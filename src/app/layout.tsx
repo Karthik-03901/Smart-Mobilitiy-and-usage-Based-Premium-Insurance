@@ -4,7 +4,12 @@ import '../styles/globals.css';
 export const metadata: Metadata = {
   title: 'DriveFair - Consent-Based Behavioral Insurance',
   description: 'Fair insurance pricing based on your actual driving behavior',
-  viewport: 'width=device-width, initial-scale=1',
+};
+
+// Next 14: themeColor must live in the viewport export, not metadata
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: '#0080ff',
 };
 

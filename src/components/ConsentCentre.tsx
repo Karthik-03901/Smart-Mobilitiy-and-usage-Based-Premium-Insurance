@@ -1,237 +1,164 @@
-'use client';
+﻿'use client';
 
-import React, { useState } from 'react';
-import { Card } from './Card';
+import React from 'react';
 import { Button } from './Button';
+import { useApp } from '../context/AppContext';
+import type { ConsentStream } from '../context/AppContext';
 import styles from './ConsentCentre.module.css';
 
-interface ConsentStream {
-  id: string;
-  name: string;
-  purpose: string;
-  description: string;
-  dataCollected: string[];
-  retention: string;
-  pricingImpact: {
-    withConsent: number;
-    withoutConsent: number;
-  };
-  isActive: boolean;
-  lastUpdated: Date;
-}
-
 export const ConsentCentre: React.FC = () => {
-  const [consents, setConsents] = useState<ConsentStream[]>([
-    {
-      id: 'telematics',
-      name: 'Vehicle Telematics',
-      purpose: 'Usage-based pricing and safe driving rewards',
-      description: 'Track your driving behavior to offer personalized premiums based on actual driving patterns.',
-      dataCollected: [
-        'GPS location (coarse precision)',
-        'Speed and acceleration',
-        'Braking patterns',
-        'Time of day and duration',
-        'Trip distance'
-      ],
-      retention: '30 days for raw data, aggregated features kept per policy period',
-      pricingImpact: {
-        withConsent: 1840,
-        withoutConsent: 2100
-      },
-      isActive: true,
-      lastUpdated: new Date(Date.now() - 86400000 * 2),
-    },
-    {
-      id: 'wearable',
-      name: 'Wearable Health Data',
-      purpose: 'Wellness-based discount program',
-      description: 'Connect your fitness tracker to earn discounts based on healthy lifestyle habits.',
-      dataCollected: [
-        'Daily step count',
-        'Active minutes',
-        'Sleep patterns',
-        'Heart rate zones'
-      ],
-      retention: 'Monthly aggregates only',
-      pricingImpact: {
-        withConsent: 1950,
-        withoutConsent: 2100
-      },
-      isActive: false,
-      lastUpdated: new Date(Date.now() - 86400000 * 10),
-    },
-    {
-      id: 'iot',
-      name: 'Home IoT Sensors',
-      purpose: 'Smart home security discount',
-      description: 'Link your smart home security system for additional discounts on home insurance bundling.',
-      dataCollected: [
-        'Security system status',
-        'Smoke detector alerts',
-        'Water leak sensor data',
-        'Door lock status'
-      ],
-      retention: '90 days for events, status changes kept indefinitely',
-      pricingImpact: {
-        withConsent: 2000,
-        withoutConsent: 2100
-      },
-      isActive: false,
-      lastUpdated: new Date(Date.now() - 86400000 * 30),
-    },
-  ]);
+  const { consents, toggleConsent, showToast } = useApp();
 
-  const handleToggleConsent = (id: string) => {
-    setConsents(prev =>
-      prev.map(consent =>
-        consent.id === id
-          ? { ...consent, isActive: !consent.isActive, lastUpdated: new Date() }
-          : consent
-      )
+  const handleToggle = (c: ConsentStream) => {
+    toggleConsent(c.id);
+    const next = !c.isActive;
+    showToast(
+      next ? `${c.name} enabled - premium updated.` : `${c.name} disabled - standard rate applies.`,
+      next ? 'success' : 'info'
     );
   };
 
-  const activeCount = consents.filter(c => c.isActive).length;
-  const totalSavings = consents
-    .filter(c => c.isActive)
-    .reduce((sum, c) => sum + (c.pricingImpact.withoutConsent - c.pricingImpact.withConsent), 0);
+  const handleExport = (c: ConsentStream) => {
+    const blob = new Blob([JSON.stringify({ ...c, exportedAt: new Date().toISOString() }, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `drivefair-${c.id}-consent.json`; a.click();
+    URL.revokeObjectURL(url);
+    showToast(`${c.name} data exported.`, 'success');
+  };
+
+  const activeCount  = consents.filter(c => c.isActive).length;
+  const totalSavings = consents.filter(c => c.isActive)
+    .reduce((s, c) => s + (c.pricingImpact.withoutConsent - c.pricingImpact.withConsent), 0);
 
   return (
-    <div className={styles.consentCentre}>
+    <div className={styles.page}>
+      {/* ---- Page header ---- */}
       <div className={styles.header}>
-        <h1 className={styles.title}>Data Consent Centre</h1>
-        <p className={styles.description}>
-          Control exactly what data you share and see how it affects your premium. 
-          You can enable or disable any data stream at any time.
-        </p>
+        <div>
+          <h1 className={styles.title}>Data Consent Centre</h1>
+          <p className={styles.subtitle}>
+            Control exactly what data you share and how it affects your premium.
+            You can enable or disable any data stream at any time.
+          </p>
+        </div>
       </div>
 
-      <div className={styles.summaryBanner}>
-        <div className={styles.summaryContent}>
-          <div className={styles.summaryText}>
-            <h3>Your Privacy, Your Choice</h3>
-            <p>Transparent control over your data with clear pricing impact</p>
+      {/* ---- Summary banner ---- */}
+      <div className={styles.banner}>
+        <div className={styles.bannerLeft}>
+          <div className={styles.bannerIcon}>&#9632;</div>
+          <div>
+            <div className={styles.bannerTitle}>Your Privacy, Your Choice</div>
+            <div className={styles.bannerSub}>Transparent control over your data with clear pricing impact</div>
           </div>
-          <div className={styles.summaryStats}>
-            <div className={styles.summaryStat}>
-              <div className={styles.summaryStatValue}>{activeCount}</div>
-              <div className={styles.summaryStatLabel}>Active Consents</div>
-            </div>
-            <div className={styles.summaryStat}>
-              <div className={styles.summaryStatValue}>₹{totalSavings}</div>
-              <div className={styles.summaryStatLabel}>Monthly Savings</div>
-            </div>
+        </div>
+        <div className={styles.bannerStats}>
+          <div className={styles.bannerStat}>
+            <div className={styles.bannerStatNum}>{activeCount}</div>
+            <div className={styles.bannerStatLabel}>Active Consents</div>
+          </div>
+          <div className={styles.bannerDivider} />
+          <div className={styles.bannerStat}>
+            <div className={styles.bannerStatNum}>&#8377;{totalSavings.toLocaleString('en-IN')}</div>
+            <div className={styles.bannerStatLabel}>Monthly Savings</div>
           </div>
         </div>
       </div>
 
-      <div className={styles.consentList}>
+      {/* ---- Consent cards ---- */}
+      <div className={styles.cards}>
         {consents.map(consent => (
-          <div
-            key={consent.id}
-            className={`${styles.consentCard} ${consent.isActive ? styles.active : styles.inactive}`}
-          >
-            <div className={styles.consentHeader}>
-              <div className={styles.consentInfo}>
-                <h3 className={styles.consentName}>
-                  <span className={styles.consentIcon}>
-                    {consent.id === 'telematics' && '🚗'}
-                    {consent.id === 'wearable' && '⌚'}
-                    {consent.id === 'iot' && '🏠'}
-                  </span>
-                  {consent.name}
-                </h3>
-                <p className={styles.consentPurpose}>{consent.purpose}</p>
-                <div className={consent.isActive ? styles.statusActive : styles.statusInactive}>
-                  <span className={styles.statusDot}></span>
+          <div key={consent.id} className={`${styles.card} ${consent.isActive ? styles.cardActive : ''}`}>
+            {/* Card header */}
+            <div className={styles.cardHeader}>
+              <div className={styles.cardHeaderLeft}>
+                <div className={styles.cardIconWrap}>
+                  <span className={styles.cardEmoji}>{consent.icon}</span>
+                </div>
+                <div>
+                  <h2 className={styles.cardName}>{consent.name}</h2>
+                  <p className={styles.cardPurpose}>{consent.purpose}</p>
+                </div>
+              </div>
+              <div className={styles.cardHeaderRight}>
+                <span className={`${styles.statusBadge} ${consent.isActive ? styles.statusActive : styles.statusInactive}`}>
                   {consent.isActive ? 'Active' : 'Inactive'}
-                </div>
-              </div>
-
-              <div className={styles.toggleContainer}>
-                <label className={styles.toggle}>
-                  <input
-                    type="checkbox"
-                    checked={consent.isActive}
-                    onChange={() => handleToggleConsent(consent.id)}
-                    aria-label={`Toggle ${consent.name}`}
-                  />
-                  <span className={styles.toggleSlider}></span>
-                </label>
+                </span>
+                <button
+                  className={`${styles.toggle} ${consent.isActive ? styles.toggleOn : ''}`}
+                  onClick={() => handleToggle(consent)}
+                  role="switch"
+                  aria-checked={consent.isActive}
+                  aria-label={`Toggle ${consent.name}`}
+                >
+                  <span className={styles.toggleThumb} />
+                </button>
               </div>
             </div>
 
-            <div className={styles.consentDetails}>
-              <p style={{ color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
-                {consent.description}
-              </p>
+            {/* Progress bar */}
+            <div className={styles.progressBar}>
+              <div className={styles.progressFill} style={{ width: consent.isActive ? '100%' : '0%' }} />
+            </div>
 
-              <div className={styles.detailsGrid}>
-                <div className={styles.detailItem}>
-                  <div className={styles.detailLabel}>Data Collected</div>
-                  <ul className={styles.dataList}>
-                    {consent.dataCollected.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
+            {/* Description */}
+            <p className={styles.cardDesc}>{consent.description}</p>
 
-                <div className={styles.detailItem}>
-                  <div className={styles.detailLabel}>Retention Period</div>
-                  <div className={styles.detailValue}>{consent.retention}</div>
-                </div>
+            {/* Data details */}
+            <div className={styles.detailsGrid}>
+              <div className={styles.detailSection}>
+                <div className={styles.detailLabel}>DATA COLLECTED</div>
+                <ul className={styles.detailList}>
+                  {consent.dataCollected.map(d => (
+                    <li key={d} className={styles.detailItem}>
+                      <span className={styles.detailBullet} />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
               </div>
+              <div className={styles.detailSection}>
+                <div className={styles.detailLabel}>RETENTION PERIOD</div>
+                <p className={styles.retentionText}>{consent.retention}</p>
+              </div>
+            </div>
 
-              <div className={styles.impactSection}>
-                <div className={styles.impactTitle}>
-                  💰 Pricing Impact
+            {/* Pricing impact */}
+            <div className={styles.pricingBox}>
+              <div className={styles.pricingTitle}>&#9733; Pricing Impact</div>
+              <div className={styles.pricingGrid}>
+                <div className={styles.pricingItem}>
+                  <div className={styles.pricingItemLabel}>With Data Sharing</div>
+                  <div className={styles.pricingItemVal}>
+                    &#8377;{consent.pricingImpact.withConsent.toLocaleString('en-IN')}
+                  </div>
                 </div>
-                <div className={styles.impactComparison}>
-                  <div className={styles.impactPrice}>
-                    <div className={styles.impactLabel}>With Data Sharing</div>
-                    <div className={styles.impactValue}>
-                      <span className={styles.impactCurrency}>₹</span>
-                      {consent.pricingImpact.withConsent}
-                    </div>
+                <div className={styles.pricingSavings}>
+                  <div className={styles.pricingSavingsNum}>
+                    -{'\u20B9'}{(consent.pricingImpact.withoutConsent - consent.pricingImpact.withConsent).toLocaleString('en-IN')}
                   </div>
-
-                  <div className={styles.impactDifference}>
-                    {consent.pricingImpact.withoutConsent > consent.pricingImpact.withConsent ? (
-                      <span className={styles.impactSavings}>
-                        -₹{consent.pricingImpact.withoutConsent - consent.pricingImpact.withConsent}
-                      </span>
-                    ) : (
-                      <span className={styles.impactIncrease}>
-                        +₹{consent.pricingImpact.withConsent - consent.pricingImpact.withoutConsent}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={styles.impactPrice}>
-                    <div className={styles.impactLabel}>Standard Rate</div>
-                    <div className={styles.impactValue}>
-                      <span className={styles.impactCurrency}>₹</span>
-                      {consent.pricingImpact.withoutConsent}
-                    </div>
+                  <div className={styles.pricingSavingsLabel}>Savings</div>
+                </div>
+                <div className={styles.pricingItem}>
+                  <div className={styles.pricingItemLabel}>Standard Rate</div>
+                  <div className={styles.pricingItemVal}>
+                    &#8377;{consent.pricingImpact.withoutConsent.toLocaleString('en-IN')}
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className={styles.consentFooter}>
+            {/* Footer */}
+            <div className={styles.cardFooter}>
               <span className={styles.lastUpdated}>
-                Last updated: {consent.lastUpdated.toLocaleDateString('en-IN', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
+                Last updated: {consent.lastUpdated.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
               </span>
-              <div className={styles.consentActions}>
-                <Button variant="ghost" size="sm">
+              <div className={styles.cardActions}>
+                <Button variant="ghost" size="sm" onClick={() => showToast(`Consent history for "${consent.name}" is not available in Phase 1 demo.`, 'info')}>
                   View History
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => handleExport(consent)}>
                   Export Data
                 </Button>
               </div>
@@ -239,20 +166,6 @@ export const ConsentCentre: React.FC = () => {
           </div>
         ))}
       </div>
-
-      <Card
-        title="Your Rights"
-        variant="outlined"
-        style={{ marginTop: 'var(--space-8)' }}
-      >
-        <ul style={{ marginBottom: 0 }}>
-          <li>You can withdraw consent at any time without penalty</li>
-          <li>Standard tariff applies when consent is revoked (no hidden charges)</li>
-          <li>Export your data in JSON format anytime</li>
-          <li>Request deletion of your behavioral data (aggregate features retained per policy requirements)</li>
-          <li>All consent changes are logged and auditable</li>
-        </ul>
-      </Card>
     </div>
   );
 };

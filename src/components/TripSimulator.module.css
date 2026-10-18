@@ -95,12 +95,13 @@
 }
 
 .mapStat {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--color-surface, rgba(255, 255, 255, 0.95));
   backdrop-filter: blur(10px);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-base);
   box-shadow: var(--shadow-sm);
   pointer-events: auto;
+  border: 1px solid var(--color-border, rgba(226, 232, 240, 0.6));
 }
 
 .mapStatLabel {
@@ -280,6 +281,10 @@
   flex-shrink: 0;
 }
 
+.eventInfo {
+  background: var(--color-primary-50);
+}
+
 .eventInfo .eventDot {
   background: var(--color-primary-500);
 }
@@ -337,3 +342,68 @@
     min-width: 100%;
   }
 }
+
+/* ─── Dark Mode Overrides ────────────────────────────────── */
+:global([data-theme="dark"]) .simulator {
+  background: #131929;
+  border: 1px solid #1e2d45;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+:global([data-theme="dark"]) .mapContainer {
+  background: #0f1422;
+  border-color: #1e2d45;
+}
+
+:global([data-theme="dark"]) .panel {
+  background: #1a2236;
+  border-color: #1e2d45;
+}
+
+:global([data-theme="dark"]) .eventsList {
+  background: #1a2236;
+  border-color: #1e2d45;
+}
+
+:global([data-theme="dark"]) .mapStat {
+  background: rgba(19, 25, 41, 0.92);
+  border-color: #1e2d45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+:global([data-theme="dark"]) .mapStatLabel {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .mapStatValue {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .mapStatUnit {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .metric {
+  background: #162035;
+  border-color: #1e2d45;
+}
+
+:global([data-theme="dark"]) .metricLabel {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .metricUnit {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .metricBar {
+  background: #1e2d45;
+}
+
+:global([data-theme="dark"]) .select {
+  background: #0f1422;
+  border-color: #1e2d45;
+  color: #f1f5f9;
+}
+
+

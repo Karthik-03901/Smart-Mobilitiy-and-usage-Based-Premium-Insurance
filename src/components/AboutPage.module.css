@@ -1,0 +1,436 @@
+.page { display: flex; flex-direction: column; width: 100%; }
+
+.hero {
+  position: relative;
+  width: 100%;
+  padding: 96px 40px 84px;
+  background: linear-gradient(145deg, #1e1b4b 0%, #1e3a5f 60%, #0f172a 100%);
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 30%, rgba(14,165,233,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 99px;
+  background: rgba(99,102,241,0.20);
+  border: 1px solid rgba(99,102,241,0.30);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 22px;
+}
+.heroTitle {
+  font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+.heroSubtitle {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin: 0 auto;
+  max-width: 720px;
+  text-align: center;
+}
+
+.content { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.section { padding: 80px 0; }
+.sectionGray { background: var(--color-surface-elevated, #f8fafc); padding: 80px; }
+.sectionGrayInner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.sectionDark {
+  background: linear-gradient(145deg, #0f172a, #1e1b4b);
+  padding: 80px;
+  border-radius: 0;
+  margin-top: 40px;
+}
+.sectionDarkInner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+
+.tag {
+  display: inline-block; padding: 5px 14px; border-radius: 99px;
+  background: rgba(99,102,241,0.10); color: #6366f1;
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 16px; border: 1px solid rgba(99,102,241,0.20);
+}
+.tagLight {
+  display: inline-block; padding: 5px 14px; border-radius: 99px;
+  background: rgba(99,102,241,0.20); color: rgba(255,255,255,0.75);
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 16px; border: 1px solid rgba(99,102,241,0.30);
+}
+.title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 900; color: #0f172a;
+  letter-spacing: -0.04em; margin: 0 0 32px 0;
+}
+.titleLight {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 900; color: white;
+  letter-spacing: -0.04em; margin: 0 0 48px 0;
+}
+.body { font-size: 1rem; color: #64748b; line-height: 1.70; margin: 0 0 16px 0; }
+
+.actionBtn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px; border-radius: 12px; border: none;
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+  color: white; font-family: inherit; font-size: 0.9375rem;
+  font-weight: 700; cursor: pointer; margin-top: 8px;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.38);
+  transition: all 0.2s ease;
+}
+.actionBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,102,241,0.50); }
+
+/* Mission */
+.missionGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.missionStats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(14,165,233,0.04));
+  border-radius: 20px; padding: 36px; border: 1px solid rgba(99,102,241,0.12);
+}
+.missionStat { display: flex; flex-direction: column; gap: 6px; }
+.missionStatNum { font-size: 2.25rem; font-weight: 900; color: #0f172a; letter-spacing: -0.05em; }
+.missionStatLabel { font-size: 0.875rem; color: #64748b; font-weight: 500; }
+
+/* Values */
+.valuesGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.valueCard {
+  position: relative;
+  background: white;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 32px 24px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Glowing top accent strip */
+.valueCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--card-gradient, linear-gradient(135deg, #6366f1, #0ea5e9));
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ambient colored glow wash */
+.valueCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, var(--card-light-bg, rgba(99,102,241,0.08)) 0%, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.valueCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--card-color, #6366f1);
+  box-shadow: 0 20px 40px -15px var(--card-glow, rgba(99,102,241,0.28)),
+              0 0 0 1px var(--card-color, #6366f1);
+  background-color: var(--card-light-bg, rgba(99,102,241,0.03));
+}
+
+.valueCard:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.valueCard:hover::after {
+  opacity: 1;
+}
+
+.valueIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(99,102,241,0.08);
+  color: var(--card-color, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              box-shadow 0.3s ease,
+              color 0.3s ease;
+}
+
+.valueCard:hover .valueIcon {
+  transform: scale(1.14) rotate(-4deg);
+  background: var(--card-gradient, linear-gradient(135deg, #6366f1, #0ea5e9));
+  color: white;
+  box-shadow: 0 8px 24px var(--card-glow, rgba(99,102,241,0.40));
+}
+
+.valueTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  transition: color 0.25s ease;
+}
+
+.valueCard:hover .valueTitle {
+  color: var(--card-color, #4f46e5);
+}
+
+.valueDesc {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+.valueCard:hover .valueDesc {
+  color: #334155;
+}
+
+/* Team */
+.teamGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.teamCard {
+  position: relative;
+  background: white;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 38px 28px 32px;
+  text-align: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Glowing top accent strip */
+.teamCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--card-gradient, linear-gradient(135deg, #6366f1, #0ea5e9));
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ambient colored glow wash */
+.teamCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, var(--card-light-bg, rgba(99,102,241,0.08)) 0%, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.teamCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--card-color, #6366f1);
+  box-shadow: 0 20px 40px -15px var(--card-glow, rgba(99,102,241,0.28)),
+              0 0 0 1px var(--card-color, #6366f1);
+  background-color: var(--card-light-bg, rgba(99,102,241,0.03));
+}
+
+.teamCard:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.teamCard:hover::after {
+  opacity: 1;
+}
+
+.teamAvatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--card-gradient, linear-gradient(135deg, #6366f1, #0ea5e9));
+  color: white;
+  font-size: 1.35rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+}
+
+.teamCard:hover .teamAvatar {
+  transform: scale(1.12) rotate(3deg);
+  box-shadow: 0 8px 26px var(--card-glow, rgba(99,102,241,0.42)),
+              0 0 0 4px rgba(255, 255, 255, 0.85);
+}
+
+.teamName {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+  transition: color 0.25s ease;
+  letter-spacing: -0.02em;
+}
+
+.teamCard:hover .teamName {
+  color: var(--card-color, #4f46e5);
+}
+
+.teamRole {
+  font-size: 0.8125rem;
+  color: var(--card-color, #6366f1);
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.25s ease;
+}
+
+.teamCard:hover .teamRole {
+  transform: translateY(-1px);
+}
+
+.teamBio {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+.teamCard:hover .teamBio {
+  color: #334155;
+}
+
+/* Timeline */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timelineItem {
+  display: grid; grid-template-columns: 120px 20px 1fr;
+  align-items: flex-start; gap: 20px; position: relative; padding-bottom: 32px;
+}
+.timelineYear {
+  font-size: 0.8125rem; font-weight: 700; color: #818cf8;
+  padding-top: 4px; text-align: right;
+}
+.timelineDot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.20);
+  margin-top: 4px; flex-shrink: 0;
+}
+.timelineLine {
+  position: absolute; left: 144px; top: 18px; bottom: 0;
+  width: 2px; background: rgba(255,255,255,0.08);
+}
+.timelineEvent { font-size: 0.9375rem; color: rgba(255,255,255,0.65); line-height: 1.60; }
+
+@media (max-width: 1024px) {
+  .content { padding: 0 40px; }
+  .missionGrid { grid-template-columns: 1fr; }
+  .valuesGrid { grid-template-columns: repeat(2, 1fr); }
+  .teamGrid { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding: 60px 40px; }
+  .sectionGray, .sectionDark { margin: 0 -40px; padding: 60px 40px; }
+}
+
+/* ─── Dark Mode Overrides ────────────────────────────────── */
+:global([data-theme="dark"]) .sectionGray {
+  background: #0b0f1a;
+}
+
+:global([data-theme="dark"]) .title {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .missionCard,
+:global([data-theme="dark"]) .valueCard,
+:global([data-theme="dark"]) .teamCard {
+  background: #131929;
+  border-color: #1e2d45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+:global([data-theme="dark"]) .valueTitle,
+:global([data-theme="dark"]) .teamName {
+  color: #f1f5f9;
+}
+
+:global([data-theme="dark"]) .valueDesc,
+:global([data-theme="dark"]) .teamBio {
+  color: #94a3b8;
+}
+
+:global([data-theme="dark"]) .valueCard:hover,
+:global([data-theme="dark"]) .teamCard:hover {
+  background-color: #1a2236;
+  border-color: var(--card-color, #818cf8);
+  box-shadow: 0 20px 40px -15px var(--card-glow, rgba(99, 102, 241, 0.40)),
+              0 0 0 1px var(--card-color, #818cf8);
+}
+
+:global([data-theme="dark"]) .teamCard:hover .teamAvatar {
+  box-shadow: 0 8px 26px var(--card-glow, rgba(99, 102, 241, 0.50)),
+              0 0 0 4px rgba(19, 25, 41, 0.90);
+}
+
+:global([data-theme="dark"]) .valueCard:hover .valueTitle,
+:global([data-theme="dark"]) .teamCard:hover .teamName {
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .valueCard:hover .valueDesc,
+:global([data-theme="dark"]) .teamCard:hover .teamBio {
+  color: #cbd5e1;
+}
+
+
